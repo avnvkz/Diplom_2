@@ -1,5 +1,6 @@
 package ru.praktikum.stellarburgers.order;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -52,6 +53,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создание заказа с ингредиентами для авторизованного пользователя")
     public void createOrderWithIngredientsAndWithAuthUserOk200() {
         User user = UserGenerator.getRandom();
 
@@ -75,6 +77,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создание заказа с ингредиентами без авторизации")
     public void createOrderWithIngredientsAndWithoutAuthUserOk200() {
         accessIngredientsPojo = orderClient.getListOfIngredients();
         OrderIngredients orderIngredients = OrderGenerator.getRandom(accessIngredientsPojo);
@@ -88,6 +91,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создание заказа без ингредиентов для авторизованного пользователя")
     public void createOrderWithoutIngredientsAndWithAuthUserBadRequest400() {
         User user = UserGenerator.getRandom();
 
@@ -111,6 +115,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создание закза без ингредиентов и без авторизации")
     public void createOrderWithoutIngredientsAndWithoutAuthUserBadRequest400() {
         OrderIngredients orderIngredients = OrderGenerator.getEmptylist();
 
@@ -124,6 +129,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создание заказа с неправильным хешем ингредиентов для авторизованного пользователя")
     public void createOrderWithWrongHashIngredientsAndWithAuthUserInternalServerError500() {
         User user = UserGenerator.getRandom();
 
@@ -143,6 +149,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создание заказа с неправильным хешем ингредиентов без авторизации")
     public void createOrderWithWrongHashIngredientsAndWithoutAuthUserInternalServerError500() {
         OrderIngredients orderIngredients = OrderGenerator.getWrongHashList();
 

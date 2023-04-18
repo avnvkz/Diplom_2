@@ -1,5 +1,6 @@
 package ru.praktikum.stellarburgers.order;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -51,6 +52,7 @@ public class GetListOfOrdersTests {
     }
 
     @Test
+    @DisplayName("Получение пустого списка заказов для авторизированного пользователя")
     public void getOrdersWithAuthUserWithoutOrdersOk200() {
         User user = UserGenerator.getRandom();
 
@@ -71,6 +73,7 @@ public class GetListOfOrdersTests {
     }
 
     @Test
+    @DisplayName("Получение заказов для авторизированного пользователя")
     public void getOrdersWithAuthUserWithOneOrderOk200() {
         User user = UserGenerator.getRandom();
 
@@ -98,6 +101,7 @@ public class GetListOfOrdersTests {
     }
 
     @Test
+    @DisplayName("Получение заказов для неавторизированного пользователя")
     public void getOrdersWithoutAuthUserUnauthorized401() {
         orderClient.getUserOrders("")
                 .assertThat()

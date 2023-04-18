@@ -1,5 +1,6 @@
 package ru.praktikum.stellarburgers.user;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -48,6 +49,7 @@ public class LoginUserTests {
     }
 
     @Test
+    @DisplayName("Успешный логин с валидными данными")
     public void userCanLoginWithValidDateOk200() {
         User user = UserGenerator.getRandom();
 
@@ -70,6 +72,7 @@ public class LoginUserTests {
     }
 
     @Test
+    @DisplayName("Ошибка при авторизации без электронной почты")
     public void userCannotLoginWithoutEmailError401() {
         User user = UserGenerator.getRandom();
 
@@ -93,6 +96,7 @@ public class LoginUserTests {
     }
 
     @Test
+    @DisplayName("Ошибка при авторизации без пароля")
     public void userCannotLoginWithoutPasswordError401() {
         User user = UserGenerator.getRandom();
 
@@ -116,6 +120,7 @@ public class LoginUserTests {
     }
 
     @Test
+    @DisplayName("Ошибка при авторизации с невалидными данными")
     public void userCannotLoginWithInvalidDataError401() {
         User user = UserGenerator.getRandom();
 

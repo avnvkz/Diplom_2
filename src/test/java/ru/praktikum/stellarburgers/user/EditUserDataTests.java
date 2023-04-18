@@ -1,5 +1,6 @@
 package ru.praktikum.stellarburgers.user;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -45,6 +46,7 @@ public class EditUserDataTests {
     }
 
     @Test
+    @DisplayName("Изменения электронной почты для авторизованного пользователя")
     public void editUserEmailWithAuthorizationToNewEmailOk200() {
         User user = UserGenerator.getRandom();
 
@@ -69,6 +71,7 @@ public class EditUserDataTests {
     }
 
     @Test
+    @DisplayName("Изменение имени для авторизованного пользователя")
     public void editUserNameWithAuthorizationToNewNameOk200() {
         User user = UserGenerator.getRandom();
 
@@ -93,6 +96,7 @@ public class EditUserDataTests {
     }
 
     @Test
+    @DisplayName("Ошибка при изменении электронной почты на дублирующуюся для авторизованного пользователя")
     public void editUserEmailWithAuthorizationToDuplicatedEmailError403() {
         User user1 = UserGenerator.getRandom();
         User user2 = UserGenerator.getRandom();
@@ -126,6 +130,7 @@ public class EditUserDataTests {
 
 
     @Test
+    @DisplayName("Ошибка при изменении электронной почты без авторизации")
     public void editUserEmailWithoutAuthorizationToNewEmailError401() {
         User user = UserGenerator.getRandom();
 
@@ -151,6 +156,7 @@ public class EditUserDataTests {
     }
 
     @Test
+    @DisplayName("Ошибка при изменении имени без авторизации")
     public void editUserNameWithoutAuthorizationToNewNameError401() {
         User user = UserGenerator.getRandom();
 

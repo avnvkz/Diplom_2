@@ -1,5 +1,6 @@
 package ru.praktikum.stellarburgers.user;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -46,6 +47,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Создание пользователя с валидными данными")
     public void userCanBeCreatedWithValidDataOk200() {
         User user = UserGenerator.getRandom();
 
@@ -59,6 +61,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Ошибка при создании пользователя с дублирующими данными")
     public void userCannotBeCreatedWithDuplicatedDataError403() {
         User user = UserGenerator.getRandom();
 
@@ -80,6 +83,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Ошибка создания пользователя без электронной почты (email)")
     public void userCannotBeCreatedWithoutEmailError403() {
         User user = UserGenerator.getRandom();
         user.setEmail("");
@@ -94,6 +98,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Ошибка создания пользователя без пароля")
     public void userCannotBeCreatedWithoutPasswordError403() {
         User user = UserGenerator.getRandom();
         user.setPassword("");
@@ -108,6 +113,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Ошибка создания пользователя без имени")
     public void userCannotBeCreatedWithoutNamedError403() {
         User user = UserGenerator.getRandom();
         user.setName("");
